@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>Ferdi Online 3D Viewer</title>
+</head>
+
+<body>
+  <div class="header" id="header">
+    <div class="title">
+      <div class="title_left">
+        <a href="https://3dviewer.net" class="supportedby">
+          <span>Supported by </span>
+          <i class="icon icon-3dov-ferdi"></i>
+        </a>
+      </div>
+      <div class="main_file_name only_full_width" id="main_file_name"></div>
+    </div>
+    <div class="toolbar" id="toolbar"></div>
+  </div>
+  <div class="main" id="main">
+    <div class="main_left_container only_full_width" id="main_left_container">
+      <div class="main_navigator ov_panel_set_container" id="main_navigator"></div>
+      <div class="main_splitter" id="main_navigator_splitter"></div>
+    </div>
+    <div class="main_viewer" id="main_viewer"></div>
+    <div class="main_right_container only_full_width" id="main_right_container">
+      <div class="main_splitter" id="main_sidebar_splitter"></div>
+      <div class="main_sidebar ov_panel_set_right_container" id="main_sidebar"></div>
+    </div>
+  </div>
+  <script type="module" src="./src/index.js"></script>
+</body>
+
+</html>

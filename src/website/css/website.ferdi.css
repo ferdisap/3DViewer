@@ -1,0 +1,13 @@
+div.main_file_name{
+  margin: unset;
+}
+
+div.title{
+  background-color: #808080;
+  color: white;
+}
+
+a.supportedby{
+  font-size: small;
+  color: white;
+}
