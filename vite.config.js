@@ -38,9 +38,5 @@ export default defineConfig({
       }
     }
   },
-  base: "3DViewer",
-  // esbuild: {
-  //   target: "esnext",
-  //   platform: "windows"
-  // }
+  base: "3DViewer"
 })
