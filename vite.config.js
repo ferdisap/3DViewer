@@ -38,8 +38,8 @@ export default defineConfig({
       }
     }
   },
-  esbuild: {
-    target: "esnext",
-    platform: "linux"
-  }
+  // esbuild: {
+  //   target: "esnext",
+  //   platform: "linux"
+  // }
 })
