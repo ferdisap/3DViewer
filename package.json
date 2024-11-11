@@ -19,5 +19,11 @@
     "fflate": "0.8.2",
     "occt-import-js": "^0.0.22",
     "three": "0.163.0"
+  },
+  "resolutions": {
+    "rollup": "npm:@rollup/wasm-node"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
