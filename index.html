@@ -5,6 +5,27 @@
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <title>Ferdi Online 3D Viewer</title>
+
+  <script>
+    // browser cannot request url of blob, then using this one
+    window.addEventListener(
+      'message',
+      ({
+        origin, // eg: https://ferdisap/github.io
+        data // === event.data? harusnya output File
+      }) => {
+        // if(origin === 'https://ferdisap/github.io') {}
+        document.addEventListener('load',() => {
+          const evt = new Event('message');
+          evt.data = data
+          evt.origin = origin;
+          setTimeout(() => {
+            window.dispatchEvent(evt);
+          },100)
+        })
+      }
+    );
+  </script>
 </head>
 
 <body>

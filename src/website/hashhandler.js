@@ -33,6 +33,7 @@ export class HashHandler
     GetModelFilesFromHash ()
     {
         let parser = CreateUrlParser (this.GetHash ());
+        console.log(parser.GetModelUrls (), this.GetHash ());
         return parser.GetModelUrls ();
     }
 

@@ -241,7 +241,7 @@ export class WebsiteFerdi {
     this.SetUIState(WebsiteUIState.Intro);
 
     this.hashHandler.SetEventListener(this.OnHashChange.bind(this));
-    if(urls) {
+    if (urls) {
       this.LoadModelFromUrlList(urls, this.createImportSettings());
     } else {
       this.OnHashChange();
@@ -250,6 +250,20 @@ export class WebsiteFerdi {
     window.addEventListener('resize', () => {
       this.layouter.Resize();
     });
+
+    // browser cannot request url of blob, then using this one
+    window.addEventListener(
+      'message',
+      ({
+        origin, // eg: https://ferdisap/github.io
+        data // === event.data? harusnya output File
+      }) => {
+        console.log(data);
+        // if(origin === 'https://ferdisap/github.io') {}
+        HandleEvent ('model_load_started', 'open_file');
+        this.LoadModelFromFileList([data]);
+      }
+    );
   }
 
   HasLoadedModel() {
@@ -397,7 +411,7 @@ export class WebsiteFerdi {
     });
   }
 
-  createImportSettings(){
+  createImportSettings() {
     let importSettings = new ImportSettings();
     importSettings.defaultLineColor = this.settings.defaultLineColor;
     importSettings.defaultColor = this.settings.defaultColor;
@@ -472,6 +486,7 @@ export class WebsiteFerdi {
   }
 
   LoadModelFromUrlList(urls, settings) {
+    console.log(urls);
     let inputFiles = InputFilesFromUrls(urls);
     this.LoadModelFromInputFiles(inputFiles, settings);
     this.ClearHashIfNotOnlyUrlList();
@@ -936,7 +951,7 @@ export class WebsiteFerdi {
   // }
 }
 
-export function CreateFerdi3DViewer(container, urls){
+export function CreateFerdi3DViewer(container, urls) {
   container.innerHTML = `
   <div class="header" id="header">
     <div class="title">
@@ -962,22 +977,22 @@ export function CreateFerdi3DViewer(container, urls){
     </div>
   </div>
   `;
-(new WebsiteFerdi({
-  headerDiv: container.querySelector('#header'),
-  headerButtonsDiv: container.querySelector('#header_buttons'),
-  toolbarDiv: container.querySelector('#toolbar'),
-  mainDiv: container.querySelector('#main'),
-  introContentDiv: container.querySelector('#intro_content'),
-  fileNameDiv: container.querySelector('#main_file_name'),
+  (new WebsiteFerdi({
+    headerDiv: container.querySelector('#header'),
+    headerButtonsDiv: container.querySelector('#header_buttons'),
+    toolbarDiv: container.querySelector('#toolbar'),
+    mainDiv: container.querySelector('#main'),
+    introContentDiv: container.querySelector('#intro_content'),
+    fileNameDiv: container.querySelector('#main_file_name'),
 
-  leftContainerDiv: container.querySelector('#main_left_container'),
-  navigatorDiv: container.querySelector('#main_navigator'),
-  navigatorSplitterDiv: container.querySelector('#main_navigator_splitter'),
-  rightContainerDiv: container.querySelector('#main_right_container'),
-  sidebarDiv: container.querySelector('#main_sidebar'),
-  sidebarSplitterDiv: container.querySelector('#main_sidebar_splitter'),
-  viewerDiv: container.querySelector('#main_viewer'),
-}))
-  .Load(urls)
+    leftContainerDiv: container.querySelector('#main_left_container'),
+    navigatorDiv: container.querySelector('#main_navigator'),
+    navigatorSplitterDiv: container.querySelector('#main_navigator_splitter'),
+    rightContainerDiv: container.querySelector('#main_right_container'),
+    sidebarDiv: container.querySelector('#main_sidebar'),
+    sidebarSplitterDiv: container.querySelector('#main_sidebar_splitter'),
+    viewerDiv: container.querySelector('#main_viewer'),
+  }))
+    .Load(urls)
 }
 
